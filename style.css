@@ -6,15 +6,33 @@
     flex-wrap: wrap;
 }
 
+h2{
+    font-family: 'Calibri';
+}
+#player{
+    text-transform: uppercase;
+}
 .square{
     height: 60px;
     width: 60px;
-
+    position: relative;
 }
 .square svg{
     height: 50px;
     width: 50px;
     margin: 5px;
+    position: relative;
+    z-index: -1;/*as when moving pice the square also mobves to prevent it we take the square z index -1 and piece z index 2*/
+}
+
+path{
+    position: relative;
+    z-index: -2;
+}
+
+.piece{
+    position: relative;
+    z-index: 2;
 }
 .beige{
     background-color: rgb(110, 110, 98);
