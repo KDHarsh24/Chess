@@ -74,28 +74,43 @@ function dragDrop(e){
     e.stopPropagation()
     const correct_mover = draggedElement.firstChild.classList.contains(mover)
     const selectPiece = e.target.classList.contains('piece')
-    console.log("Piece:", selectPiece)
-    console.log("Hand : ", correct_mover)
+    const valid = pieceMoving(e.target)
     let opponent = 'black'
     if(mover === 'black')
         opponent = 'white'
-    const takenByOpponent = e.target.firstChild?.classList.contains(opponent)
+    let takenByOpponent = false
+    if(selectPiece)
+        takenByOpponent = e.target.firstChild.classList.contains(opponent)
+    
+    if(!selectPiece && valid)
+    {
+        e.target.append(draggedElement)
+        changePlayer()
+        return
+    }
+    if(selectPiece && takenByOpponent)
+    {
+        console.log(e.target)
+        e.target.firstChild.remove()
+        e.target.append(draggedElement)
+        changePlayer()
+        return
+    }
     //e.target.parentNode.append(draggedElement)
     //e.target.remove()
     //e.target.append(draggedElement)
-    changePlayer()
 }
 
 function changePlayer(){
     if(mover === 'black'){
         mover = 'white'
         player.textContent = 'white'
-        reverseBoard()
+        //reverseBoard()
     }
     else{
         mover = 'black'
         player.textContent = 'black'
-        revertBoard()
+        //revertBoard()
     }
 }
 
@@ -111,4 +126,13 @@ function revertBoard(){
     allSquares.forEach((square, i) =>{
         square.setAttribute('square-id', i)
     })
+}
+
+function pieceMoving(target)
+{
+    const targetId = Number(target.getAttribute('square-id')) || Number()
+    const startId = Number(startPositionId)
+    const piece = draggedElement.id 
+    console.log(targetId, startId, piece)
+    return 1
 }
