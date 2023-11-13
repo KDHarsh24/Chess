@@ -49,3 +49,10 @@ path{
 .white{
     fill: rgb(210, 210, 210)
 }
+
+.dotspot{
+    background-color: green;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
