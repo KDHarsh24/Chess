@@ -163,10 +163,27 @@ function pieceMoving(target, selectPiece)
                 targetId == startId+8)
                 return true
             if(selectPiece && (targetId === startId+size-1 || targetId === startId+size+1))
-                return 1;
+                return true
             else
                 return false
         }
     }
-    return 1
+    else if(piece === 'knight')
+    {
+        if(
+            targetId == startId + size*2 + 1 ||
+            targetId == startId + size*2 - 1 ||
+            targetId == startId + size - 2 ||
+            targetId == startId + size + 2 ||
+            targetId == startId - size*2 + 1 ||
+            targetId == startId - size*2 - 1 ||
+            targetId == startId - size - 2 ||
+            targetId == startId - size + 2)
+            return true
+    }
+    else if(piece === 'bishop')
+    {
+        
+    }
+    return false
 }
